@@ -1,1 +1,3 @@
-*.csv
+Project/data/dataset/*
+Project/data/test/*
+Project/data/train/*
