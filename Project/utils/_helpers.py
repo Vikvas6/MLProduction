@@ -121,6 +121,7 @@ def features_selection(X_train, y_train, X_test, y_test, columns, sel_type="FI",
         selector.fit(X_train, y_train)
         feats = columns[selector.support_]
     elif sel_type == "PI":
+        fitted_clf, _, _ = xgb_fit_predict(X_train, y_train, X_test, y_test)
         perm = PermutationImportance(fitted_clf, random_state=42).fit(X_train, y_train)
         res = pd.DataFrame(columns, columns=['feature'])
         res['score'] = perm.feature_importances_

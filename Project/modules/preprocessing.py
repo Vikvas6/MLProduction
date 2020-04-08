@@ -45,6 +45,7 @@ def prepare_dataset_balanced(dataset,
     X_train = dataset.drop(['user_id', 'is_churned'], axis=1)
     y_train = dataset['is_churned']
 
-    X_train_mm = MinMaxScaler().fit_transform(X_train)
+    scaler = MinMaxScaler()
+    X_train_mm = scaler.fit_transform(X_train)
     X_train_balanced, y_train_balanced = SMOTE(random_state=42, ratio=0.3).fit_sample(X_train_mm, y_train.values)
-    return X_train_balanced, y_train_balanced
+    return X_train_balanced, y_train_balanced, scaler
